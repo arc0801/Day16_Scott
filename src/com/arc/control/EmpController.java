@@ -56,14 +56,6 @@ public class EmpController {
 			default :
 				break;
 			}//switch
-
 		}//while
-
-
-
 	}
-
-
-
-
 }

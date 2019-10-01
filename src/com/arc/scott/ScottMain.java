@@ -2,6 +2,7 @@ package com.arc.scott;
 
 import java.sql.Connection;
 
+import com.arc.control.DeptController;
 import com.arc.control.EmpController;
 import com.arc.emp.EmpDAO;
 import com.arc.emp.EmpDTO;
@@ -15,6 +16,9 @@ public class ScottMain {
 		
 		EmpController empController = new EmpController();
 		empController.start();
+		
+		//DeptController deptController = new DeptController();
+		//deptController.start();
 		
 	}
 }
