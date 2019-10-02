@@ -35,7 +35,8 @@ public class EmpController {
 			System.out.println("1. 사원 전체 정보 출력");
 			System.out.println("2. 사원 검색 출력");
 			System.out.println("3. 사원 정보 추가");
-			System.out.println("4. 종료");
+			System.out.println("4. 사원 정보 삭제");
+			System.out.println("5. 종료");
 			System.out.println("+++++++++++++++++");
 			select = sc.nextInt();
 
@@ -66,6 +67,9 @@ public class EmpController {
 					s = "Insert Success";
 				}
 				break;
+				
+			case 4:
+				empDAO.delete(empInput.empnoInput());
 				
 			default :
 				check = !check;

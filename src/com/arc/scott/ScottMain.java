@@ -19,12 +19,5 @@ public class ScottMain {
 		FrontController frontController = new FrontController();
 		frontController.start();
 		
-		/*
-		DeptDTO deptDTO = new DeptDTO();
-		deptDTO.setDeptno(12);
-		deptDTO.setDname("b");
-		deptDTO.setDname("c");		
-		*/
-		
 	}
 }

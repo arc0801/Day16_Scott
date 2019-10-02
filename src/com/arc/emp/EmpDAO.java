@@ -8,7 +8,47 @@ import java.util.ArrayList;
 
 import com.arc.util.DBConnector;
 
+import oracle.jdbc.proxy.annotation.Pre;
+
 public class EmpDAO {
+	
+	public int delete(int empno) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		int result = 0;
+		
+		try {
+			con = DBConnector.getConnect();
+			
+			String sql = "delete emp where empno = ?";
+			
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, empno);
+			
+			result = ps.executeUpdate();
+			
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return result;
+		
+		
+		
+		
+	}
 	
 	public int empInsert(EmpDTO empDTO) {
 		Connection con = null;
@@ -17,7 +57,7 @@ public class EmpDAO {
 		
 		try {
 			con= DBConnector.getConnect();
-			String sql = "insert into emp(empno, ename, job, mgr, hiredate, sal, nvl(comm, 0) comm, deptno) values (?, ?, ?, ?, sysdate, ?, ?, ?)";
+			String sql = "insert into emp(empno, ename, job, mgr, hiredate, sal, comm, deptno) values (?, ?, ?, ?, sysdate, ?, ?, ?)";
 		
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, empDTO.getEmpno());
