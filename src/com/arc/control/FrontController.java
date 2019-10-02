@@ -7,11 +7,15 @@ public class FrontController {
 	private Scanner sc;
 	private EmpController empController;
 	private DeptController deptController;
+	private SalgradeController salgradeController;
+	private BonusController bonusController;
 
 	public FrontController() {
 		sc = new Scanner(System.in);
 		empController = new EmpController();
 		deptController = new DeptController();
+		salgradeController = new SalgradeController();
+		bonusController = new BonusController();
 	}
 
 
@@ -37,11 +41,11 @@ public class FrontController {
 				break;
 
 			case 3:
-				
+				salgradeController.start();
 				break;
 				
 			case 4:
-				
+				bonusController.start();
 				break;
 				
 			default :
