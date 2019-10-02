@@ -57,7 +57,8 @@ public class EmpDAO {
 		
 		try {
 			con= DBConnector.getConnect();
-			String sql = "insert into emp(empno, ename, job, mgr, hiredate, sal, comm, deptno) values (?, ?, ?, ?, sysdate, ?, ?, ?)";
+			String sql = "insert into emp(empno, ename, job, mgr, hiredate, sal, comm, deptno) "
+					+ "values (?, ?, ?, ?, sysdate, ?, ?, ?)";
 		
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, empDTO.getEmpno());
