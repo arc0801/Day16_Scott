@@ -46,6 +46,7 @@ public class SalgradeController {
 						sv.view("데이터가 없습니다");
 					}
 					break;
+					
 				case 2:
 					int num = si.salgradeInput();
 					salDTO = salDAO.getSelectOne(num);
@@ -68,7 +69,7 @@ public class SalgradeController {
 					break;
 				case 4:
 					
-					num = si.
+					
 					
 					if(select >0) {
 						System.out.println("삭제성공");

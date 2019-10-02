@@ -2,7 +2,9 @@ package com.arc.salgrade;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.arc.util.DBConnector;
 
@@ -17,7 +19,7 @@ public class SalgradeDAO {
 			int result = 0;
 			
 			try {
-				con = dbc.dbconnecter();
+				con = DBConnector.getConnect();
 				String sql = "delete salgrade where grade=? ";
 				st = con.prepareStatement(sql);
 				
@@ -48,7 +50,7 @@ public class SalgradeDAO {
 			PreparedStatement st = null;
 			int result = 0;
 			try {
-				con = dbc.dbconnecter();
+				con = DBConnector.getConnect();
 				String sql = "insert into salgrade(grade, losal, hisal) values (? ,? ,?)";
 				st = con.prepareStatement(sql);
 				
@@ -76,14 +78,14 @@ public class SalgradeDAO {
 		//전체출력
 		public ArrayList<SalgradeDTO> getSelectList() {
 			ArrayList<SalgradeDTO> ar = new ArrayList<SalgradeDTO>();
-			DBConnecter dbc= new DBConnecter();
+			DBConnector dbc= new DBConnector();
 			Connection con = null;
 			PreparedStatement st = null;
 			ResultSet rs = null;
 			SalgradeDTO salDto = null;
 			
 			try {
-				con = dbc.dbconnecter();
+				con = DBConnector.getConnect();
 				String sql = "select * from salgrade";
 				st = con.prepareStatement(sql);
 				rs = st.executeQuery();
@@ -116,14 +118,14 @@ public class SalgradeDAO {
 		//하나검색
 		public SalgradeDTO getSelectOne(int grade) {
 			
-			DBConnecter dbc= new DBConnecter();
+			DBConnector dbc= new DBConnector();
 			Connection con = null;
 			PreparedStatement st = null;
 			ResultSet rs = null;
 			SalgradeDTO salDto = null;
 			
 			try {
-				con  = dbc.dbconnecter();
+				con  = DBConnector.getConnect();
 				String sql = "select * from salgrade where grade = ?";
 				st = con.prepareStatement(sql);
 				st.setInt(1, grade);

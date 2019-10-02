@@ -40,19 +40,33 @@ public class BonusController {
 			switch(select) {
 			case 1:
 				ArrayList<BonusDTO> ar = bonusDAO.getSelectList();
-				
+				bonusView.view(ar);
 				break;
 
 			case 2:
+				String ename = bonusInput.input();
+				BonusDTO bonusDTO = bonusDAO.getSelectOne(ename);
 				
+				if(bonusDTO != null) {
+					bonusView.view(bonusDTO);
+				}else {
+					bonusView.view("존재하지 않습니다.");
+				}
 				break;
 
 			case 3:
-
+				bonusDTO = bonusInput.insert();
+				select = bonusDAO.bonusInsert(bonusDTO);
+				
+				if(select>0) {
+					System.out.println("Insert Success");
+				}else {
+					System.out.println("Insert Fail");
+				}
 				break;
 
 			case 4:
-
+				bonusDAO.delete(bonusInput.delete());
 				break;
 
 			default :
