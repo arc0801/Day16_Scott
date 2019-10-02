@@ -39,11 +39,12 @@ public class BonusController {
 
 			switch(select) {
 			case 1:
+				ArrayList<BonusDTO> ar = bonusDAO.getSelectList();
 				
 				break;
 
 			case 2:
-
+				
 				break;
 
 			case 3:

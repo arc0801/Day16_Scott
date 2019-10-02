@@ -21,17 +21,39 @@ public class BonusDAO {
 		rs = null;
 	}
 
-	public void delete() {
+	public int delete(String ename) {
+		int result = 0;
+		
+		try {
+			con = DBConnector.getConnect();
+			
+			String sql = "delete bonus "
+					+ "where ename = ?";
+			
+			st = con.prepareStatement(sql);
+			st.setString(1, ename);
+			
+			result = st.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				st.close();
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 
-
-
-
-
+		return result;
 
 	}//delete
 
 
-	public void bonusInsert(BonusDTO bonusDTO) {
+	public int bonusInsert(BonusDTO bonusDTO) {
 		int result = 0;
 
 		try {
@@ -39,20 +61,28 @@ public class BonusDAO {
 			String sql = "insert into bonus (ename, job, sal, comm) "
 					+ "values (?, ?, ?, ?)";
 			
+			st = con.prepareStatement(sql);
+			st.setString(1, bonusDTO.getEname());
+			st.setString(2, bonusDTO.getJob());
+			st.setInt(3, bonusDTO.getSal());
+			st.setInt(4, bonusDTO.getComm());
+			
+			result = st.executeUpdate();
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				st.close();
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
-
-
-
-
-
-
-
-
+		return result;
 
 	}//bonusInsert
 
@@ -95,7 +125,6 @@ public class BonusDAO {
 
 		return ar;
 
-
 	}//getSelectList
 
 
@@ -134,6 +163,7 @@ public class BonusDAO {
 				e.printStackTrace();
 			}
 		}
+		
 		return bonusDTO;
 
 	}//getSelectOne

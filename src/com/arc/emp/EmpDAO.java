@@ -45,10 +45,8 @@ public class EmpDAO {
 		
 		return result;
 		
-		
-		
-		
 	}
+	
 	
 	public int empInsert(EmpDTO empDTO) {
 		Connection con = null;
