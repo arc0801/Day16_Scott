@@ -43,5 +43,11 @@ public class EmpInput {
 		return empno;
 	}
 	
-	
+	public String enameInput() {
+		
+		System.out.println("사원이름을 입력하세요");
+		String ename = sc.next();
+		
+		return ename;
+	}
 }

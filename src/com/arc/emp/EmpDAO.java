@@ -184,4 +184,54 @@ public class EmpDAO {
 		}
 		return empDTO;
 	}//getSelectOne
+	
+	
+	public ArrayList<EmpDTO> getSelectList(String ename) {
+		Connection con = null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		EmpDTO empDTO = null;
+		ArrayList<EmpDTO> ar = new ArrayList<EmpDTO>();
+		
+		try {
+			con = DBConnector.getConnect();
+			
+			String sql = "select * from emp "
+					+ "where ename like ?";
+			
+			st = con.prepareStatement(sql);
+			st.setString(1, "%"+ename+"%");
+			
+			rs = st.executeQuery();
+			
+			if(rs.next()) {
+				empDTO = new EmpDTO();
+				empDTO.setEmpno(rs.getInt(1));
+				empDTO.setEname(rs.getString(2));
+				empDTO.setJob(rs.getString(3));
+				empDTO.setMgr(rs.getInt(4));
+				empDTO.setHiredate(rs.getDate(5));
+				empDTO.setSal(rs.getInt(6));
+				empDTO.setComm(rs.getInt(7));
+				empDTO.setDeptno(rs.getInt(8));
+				ar.add(empDTO);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				st.close();
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return ar;
+	}
+	
+	
 }
