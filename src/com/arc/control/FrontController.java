@@ -22,7 +22,9 @@ public class FrontController {
 		while(check) {
 			System.out.println("1. 사원관리");
 			System.out.println("2. 부서관리");
-			System.out.println("3. 종      료");
+			System.out.println("3. 급여관리");
+			System.out.println("4. 보너스관리");
+			System.out.println("5. 종         료");
 			select = sc.nextInt();
 
 			switch(select) {
@@ -34,6 +36,14 @@ public class FrontController {
 				deptController.start();
 				break;
 
+			case 3:
+				
+				break;
+				
+			case 4:
+				
+				break;
+				
 			default :
 				check = !check;
 			}//while
