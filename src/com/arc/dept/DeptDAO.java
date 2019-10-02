@@ -10,8 +10,44 @@ import com.arc.emp.EmpDTO;
 import com.arc.util.DBConnector;
 
 public class DeptDAO {
+	
+	//새로운 부서 데이터 추가
+	public int deptInsert(DeptDTO deptDTO) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		int result = 0;
+		
+		try {
+			con = DBConnector.getConnect();
+			
+			String sql = "insert into dept(deptno, dname, loc) values (?, ?, ?)";
+			
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, deptDTO.getDeptno());
+			ps.setString(2, deptDTO.getDname());
+			ps.setString(3, deptDTO.getLoc());
+			
+			result = ps.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return result;
+	}//insert
+	
 
-	public ArrayList<DeptDTO> getSelectList(){
+	public ArrayList<DeptDTO> deptSelectList(){
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -21,7 +57,7 @@ public class DeptDAO {
 		try {
 			con = DBConnector.getConnect();
 			
-			String sql = "select * from dept";
+			String sql = "select * from dept order by deptno asc";
 			
 			ps = con.prepareStatement(sql);
 			

@@ -1,12 +1,13 @@
 package com.arc.view;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.arc.dept.DeptDTO;
 
 public class DeptView {
 
-	public void view(ArrayList<DeptDTO> ar) {
+	public void view(List<DeptDTO> ar) {//List가 부모형이라 이걸로 받아줘도 됨
 		for(int i=0;i<ar.size();i++) {
 			System.out.println("DEPTNO : "+ar.get(i).getDeptno());
 			System.out.println("DNAME : "+ar.get(i).getDname());

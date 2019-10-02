@@ -27,7 +27,8 @@ public class EmpView {
 	
 	
 	public void view(EmpDTO empDTO) {
-		System.out.println("EMPNO : "+empDTO.getEmpno());
+		System.out.println("E"
+				+ "MPNO : "+empDTO.getEmpno());
 		System.out.println("ENAME : "+empDTO.getEname());
 		System.out.println("JOB : "+empDTO.getJob());
 		System.out.println("MGR : "+empDTO.getMgr());

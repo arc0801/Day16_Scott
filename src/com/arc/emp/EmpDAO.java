@@ -10,6 +10,44 @@ import com.arc.util.DBConnector;
 
 public class EmpDAO {
 	
+	public int empInsert(EmpDTO empDTO) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		int result = 0;
+		
+		try {
+			con= DBConnector.getConnect();
+			String sql = "insert into emp(empno, ename, job, mgr, hiredate, sal, nvl(comm, 0) comm, deptno) values (?, ?, ?, ?, sysdate, ?, ?, ?)";
+		
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, empDTO.getEmpno());
+			ps.setString(2, empDTO.getEname());
+			ps.setString(3, empDTO.getJob());
+			ps.setInt(4, empDTO.getMgr());
+			
+			ps.setInt(5, empDTO.getSal());
+			ps.setInt(6, empDTO.getComm());
+			ps.setInt(7, empDTO.getDeptno());
+			
+			result = ps.executeUpdate();
+		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		return result;
+		
+	}
+	
 	//getSelectList
 	//전체사원정보 - 최신입사일순
 	public ArrayList<EmpDTO> getSelectList() {
