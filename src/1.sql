@@ -107,12 +107,15 @@ from emp E inner join dept D
 on E.deptno = D.deptno
 where ename = 'SMITH'
 
-SELECT E.empno, E.job, E.deptno, D.dname, D.loc 
-from emp E inner join dept D
-on E.deptno = D.deptno
+SELECT *
+from emp inner join dept
+using (deptno)
 where ename = 'SMITH'
 
-
+-- 사원번호, 사원의 이름, 상사의 사원번호, 상사의 이름
+SELECT E.empno, E.ename, M.empno, M.ename
+FROM EMP E full outer JOIN EMP M
+ON E.MGR = M.EMPNO
 
 
 
